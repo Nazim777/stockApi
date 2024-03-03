@@ -52,6 +52,11 @@ namespace stockApi.Repository
             return await _context.Stocks.Include(c=>c.Comments).FirstOrDefaultAsync(p=>p.Id==id);
         }
 
+        public async Task<bool> IsStockExistAync(int id)
+        {
+           return await _context.Stocks.AnyAsync(s=>s.Id==id);
+        }
+
         public async Task<Stock?> UpdateStockAsync(int id, UpdateStockDto updateStockDto)
         {
              var previousStock = await _context.Stocks.FirstOrDefaultAsync(s=>s.Id==id);
@@ -68,5 +73,6 @@ namespace stockApi.Repository
             await _context.SaveChangesAsync();
             return previousStock;
         }
+        
     }
 }
