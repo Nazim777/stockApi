@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using stockApi.Data;
 using stockApi.Dtos.Stock;
+using stockApi.Helpers;
 using stockApi.Interfaces;
 using stockApi.Mapper;
 
@@ -23,8 +24,8 @@ namespace stockApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll(){
-            var stocks =await _stockRepository.GetAllAsync();
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject query){
+            var stocks =await _stockRepository.GetAllAsync(query);
             var stockDto = stocks.Select(s=>s.mapToStockDto());
             return Ok(stockDto);
         }
@@ -57,7 +58,7 @@ namespace stockApi.Controllers
              // data validation
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-                
+
             var stockModel = await _stockRepository.UpdateStockAsync(id,updateStockDto);
             if(stockModel==null){
                 return NotFound();
