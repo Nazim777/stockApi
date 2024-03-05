@@ -62,3 +62,5 @@ D:\.net-web-api\stockApi\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\.net-web-api\stockApi\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\.net-web-api\stockApi\bin\Debug\net6.0\Newtonsoft.Json.dll
 D:\.net-web-api\stockApi\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\.net-web-api\stockApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\.net-web-api\stockApi\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

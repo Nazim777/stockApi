@@ -24,4 +24,17 @@ dotnet restore -->
 
 7. database relatoinship
 # newtonSoft.json 13.0.3 version
-# newtonSoft.mvc 6.0.1 version
+# Microsoft.AspNetCore.Mvc.NewtonsoftJson 6.0.1 version
+
+8. jwt
+# Microsoft.Extensions.Identity.Core 6.0.0 version
+# Microsoft.AspNetCore.Identity.EntityFrameworkCore 6.0.0 version
+# Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0 version
+
+9. after finishig step 8
+# dotnet ef migrations add identity
+# dotnet ef database update
+
+10. after finishing step 9 and configuring the role
+# dotnet ef migrations add SeedRole
+# dotnet ef database update
