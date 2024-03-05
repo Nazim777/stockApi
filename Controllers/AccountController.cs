@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using stockApi.Dtos.Account;
+using stockApi.Interfaces;
 using stockApi.Models;
 
 namespace stockApi.Controllers
@@ -14,9 +15,11 @@ namespace stockApi.Controllers
     public class AccountController:ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
-        public AccountController(UserManager<AppUser> userManager)
+        private readonly ITokenService _tokenService;
+        public AccountController(UserManager<AppUser> userManager,ITokenService tokenService)
         {
             _userManager = userManager;
+            _tokenService = tokenService;
             
         }
 
@@ -32,7 +35,13 @@ namespace stockApi.Controllers
                 if(createdUser.Succeeded){
                     var roleResults = await _userManager.AddToRoleAsync(appUser,"User");
                     if(roleResults.Succeeded){
-                        return Ok("User created");
+                        return Ok(
+                            new NewUserDto{
+                                UserName = appUser.UserName,
+                                Email = appUser.Email,
+                                Token = _tokenService.CreateToken(appUser)
+                            }
+                        );
                     }else{
                         return StatusCode(500,roleResults.Errors);
                     }

@@ -6,6 +6,7 @@ using stockApi.Data;
 using stockApi.Interfaces;
 using stockApi.Models;
 using stockApi.Repository;
+using stockApi.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,7 +34,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 // implement the DI
 builder.Services.AddScoped<IStockRepository,StockRepository>();
 builder.Services.AddScoped<ICommentRepository,CommentRepository>();
-
+builder.Services.AddScoped<ITokenService,TokenService>();
 
 
 //jwt config
