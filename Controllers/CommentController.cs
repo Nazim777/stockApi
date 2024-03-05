@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using stockApi.Dtos.Comment;
 using stockApi.Interfaces;
@@ -12,6 +13,7 @@ namespace stockApi.Controllers
 {
 
 
+    [Authorize]
     [Route("api/comment")]
     [ApiController]
     public class CommentController:ControllerBase

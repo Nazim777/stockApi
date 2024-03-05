@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using stockApi.Data;
@@ -12,6 +13,7 @@ using stockApi.Mapper;
 
 namespace stockApi.Controllers
 {
+     [Authorize]
     [Route("api/stock")]
     [ApiController]
     public class stockController:ControllerBase
@@ -24,6 +26,7 @@ namespace stockApi.Controllers
         }
 
         [HttpGet]
+        
         public async Task<IActionResult> GetAll([FromQuery] QueryObject query){
             var stocks =await _stockRepository.GetAllAsync(query);
             var stockDto = stocks.Select(s=>s.mapToStockDto());
