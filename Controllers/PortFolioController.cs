@@ -65,6 +65,29 @@ namespace stockApi.Controllers
             }
         }
 
+        [HttpDelete]
+        public async Task<IActionResult>DeletePortfolio(string symbol){
+            var username = User.GetUsername();
+            var appUser = await _userManager.FindByNameAsync(username);
+            var userPortfolio =  await _portFolioRepository.GetUserPortFolio(appUser);
+             var filteredStock = userPortfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower()).ToList();
+
+            if (filteredStock.Count() == 1)
+            {
+                await _portFolioRepository.DeletePortfolio(appUser, symbol);
+            }
+            else
+            {
+                return BadRequest("Stock not in your portfolio");
+            }
+
+            return Ok();
+
+
+
+
+        }
+
 
     }
 }
