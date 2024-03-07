@@ -38,3 +38,8 @@ dotnet restore -->
 10. after finishing step 9 and configuring the role
 # dotnet ef migrations add SeedRole
 # dotnet ef database update
+
+11. manay to many relationship
+# delete migration folder and database
+# dotnet ef migrations add PortfolioManyToMany
+# dotnet ef database update
