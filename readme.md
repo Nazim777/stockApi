@@ -43,3 +43,8 @@ dotnet restore -->
 # delete migration folder and database
 # dotnet ef migrations add PortfolioManyToMany
 # dotnet ef database update
+
+
+12. update the migration 
+# dotnet ef migrations add CommentOneToOne
+# dotnet ef database update
