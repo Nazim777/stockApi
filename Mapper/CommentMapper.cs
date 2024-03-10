@@ -15,7 +15,8 @@ namespace stockApi.Mapper
                 Title=commentModel.Title,
                 Content = commentModel.Content,
                 CreatedOn = commentModel.CreatedOn,
-                StockId = commentModel.StockId
+                StockId = commentModel.StockId,
+                CreatedBy = commentModel.AppUser.UserName,
 
             };
         }
